@@ -1,22 +1,13 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import LoginPage from './components/LoginPage';
-import MainPage from './components/MainPage';
+import React from 'react';
+import MessageList from './MessageList';
 
-function App() {
+const App = () => {
   return (
-    <Router>
-      <div>
-        <Switch>
-          <Route path="/login">
-            <LoginPage />
-          </Route>
-          <Route path="/main">
-            <MainPage />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <div>
+
+      <MessageList />
+    </div>
   );
-}
+};
 
 export default App;

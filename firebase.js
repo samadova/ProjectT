@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/firestore';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCTpkBA3K5g8AkbEU90PzswNK-2iFzrk_g",
@@ -30,3 +31,42 @@ const signOut = () => {
 };
 
 export { auth, signUp, signIn, signOut };
+
+const db = firebase.firestore();
+
+db.collection('users').add({
+  name: 'John',
+  age: 30,
+})
+  .then((docRef) => {
+    console.log('Документ успешно добавлен с ID:', docRef.id);
+  })
+  .catch((error) => {
+    console.error('Ошибка при добавлении документа:', error);
+  });
+
+
+db.collection('users').get()
+  .then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      console.log('Данные документа:', doc.id, doc.data());
+    });
+  })
+  .catch((error) => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+
+const docRef = db.collection('users').doc('USER_ID');
+
+docRef.update({
+  age: 40,
+})
+  .then(() => {
+    console.log('Документ успешно обновлен');
+  })
+  .catch((error) => {
+    console.error('Ошибка при обновлении документа:', error);
+  });
+
+
